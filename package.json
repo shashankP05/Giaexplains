@@ -1,0 +1,9 @@
+{
+  "name": "giaexplains-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "GiaExplains marketing site + lead-form serverless function (Brevo SMTP via Nodemailer)",
+  "dependencies": {
+    "nodemailer": "^6.9.14"
+  }
+}
