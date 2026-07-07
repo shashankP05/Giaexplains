@@ -542,7 +542,7 @@
       <form class="leadform" id="leadform" action="/api/lead" method="POST" novalidate>
         <div class="ff-title">Prefer I reach out? Drop your details.</div>
         <label>Store / website link
-          <input type="url" name="site" placeholder="https://yourbrand.com" required>
+          <input type="url" name="site" placeholder="yourbrand.com" inputmode="url" required>
         </label>
         <label>Email
           <input type="email" name="email" placeholder="you@brand.com" required>
@@ -590,7 +590,14 @@
     e.preventDefault();
     const note = document.getElementById('ffNote');
     const btn  = lf.querySelector('button[type="submit"]');
-    const site = lf.site.value.trim(), email = lf.email.value.trim();
+    let site = lf.site.value.trim();
+    const email = lf.email.value.trim();
+
+    // Accept bare domains like gia.com / www.gia.com — auto-prepend https:// so type=url validates.
+    if (site && !/^https?:\/\//i.test(site)) {
+      site = 'https://' + site;
+      lf.site.value = site;
+    }
 
     if(!site || !email){ note.textContent = 'Please add your store link and email.'; return; }
     if(!lf.checkValidity()){ note.textContent = 'Please check the highlighted fields.'; lf.reportValidity(); return; }
