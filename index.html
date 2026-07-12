@@ -553,8 +553,9 @@
         <label>Anything you want to flag? <span class="opt">— optional</span>
           <textarea name="query" rows="2" placeholder="Where are you stuck right now?"></textarea>
         </label>
-        <!-- anti-spam honeypot: hidden from humans; bots fill it in and get rejected server-side -->
-        <input type="text" name="company" tabindex="-1" autocomplete="off"
+        <!-- anti-spam honeypot: hidden from humans; bots fill it in and get rejected server-side.
+             Name is deliberately non-semantic so browser autofill won't populate it. -->
+        <input type="text" name="hp_check" tabindex="-1" autocomplete="off"
                aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0">
         <button type="submit" class="btn btn-coral ff-btn">Send to Gia <span class="arr">↗</span></button>
         <p class="ff-note" id="ffNote" role="status" aria-live="polite"></p>
@@ -607,7 +608,7 @@
       email,
       phone: lf.phone.value.trim(),
       query: lf.query.value.trim(),
-      company: lf.company.value.trim() // honeypot — must stay empty
+      hp_check: lf.hp_check.value.trim() // honeypot — must stay empty
     };
 
     btn.disabled = true;

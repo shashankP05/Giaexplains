@@ -53,7 +53,7 @@ module.exports = async function handler(req, res) {
   body = body || {};
 
   // Honeypot: real users never fill this. Silently accept so bots can't tell.
-  if (clamp(body.company, 200) !== '') {
+  if (clamp(body.hp_check, 200) !== '') {
     return res.status(200).json({ ok: true });
   }
 
